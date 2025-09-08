@@ -17,8 +17,12 @@
                     </x-nav-link>
 
                     <!-- Tambahan Products -->
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products*')">
                         {{ __('Products') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('minjem.index')" :active="request()->routeIs('minjem*')">
+                        {{ __('Minjem') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -78,6 +82,11 @@
             <!-- Tambahan Products responsive -->
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
                 {{ __('Products') }}
+            </x-responsive-nav-link>
+
+            <!-- Tambahan Peminjam responsive -->
+            <x-responsive-nav-link :href="route('minjem.index')" :active="request()->routeIs('minjem.*')">
+                {{ __('minjem') }}
             </x-responsive-nav-link>
         </div>
 

@@ -1,15 +1,16 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PinjemController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $products = Product::latest()->take(8)->get();
+$products = Product::with('pinjams')->latest()->take(8)->get();
     return view('welcome', compact('products'));
-});
+})->name('welcome');
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
@@ -23,5 +24,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('products', ProductController::class);
+
+Route::get('/form/create/{id}', [PinjemController::class, 'create'])->name('form.create');
+Route::post('/form/store', [PinjemController::class, 'store'])->name('form.store');
+
+Route::resource('minjem', PinjemController::class);
+Route::post('/minjem/selesai/{id}', [PinjemController::class, 'selesai'])->name('minjem.selesai');
+
+
 
 require __DIR__.'/auth.php';

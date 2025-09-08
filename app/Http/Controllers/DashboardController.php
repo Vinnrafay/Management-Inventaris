@@ -11,7 +11,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-     $products = Product::latest()->take(5)->get(); // ambil 5 produk terbaru
+     $products = Product::latest()->paginate(4);
         return view('dashboard', compact('products'));
     }
 
